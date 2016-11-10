@@ -1,4 +1,4 @@
-class apache::security {
+class cegeka_apache::security {
 
   case $::operatingsystem {
 
@@ -17,7 +17,7 @@ class apache::security {
 </IfModule>
 ',
         require => Package['mod_security'],
-        notify  => Exec['apache-graceful'],
+        notify  => Exec['cegeka_apache-graceful'],
       }
     }
 
@@ -33,7 +33,7 @@ class apache::security {
     }
   }
 
-  apache::module { ['unique_id', 'security']:
+  cegeka_apache::module { ['unique_id', 'security']:
     ensure  => present,
     require => Package['apache-mod_security'],
   }

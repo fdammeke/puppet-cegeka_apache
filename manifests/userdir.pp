@@ -1,4 +1,4 @@
-class apache::userdir {
+class cegeka_apache::userdir {
 
   file {'/etc/skel/public_html':
     ensure => directory,
@@ -27,17 +27,17 @@ class apache::userdir {
   file {'/etc/skel/public_html/README':
     ensure  => present,
     require => File['/etc/skel/public_html'],
-    source  => 'puppet:///modules/apache/README_userdir',
+    source  => 'puppet:///modules/cegeka_apache/README_userdir',
   }
 
-  apache::module { 'userdir':
+  cegeka_apache::module { 'userdir':
     ensure => present,
   }
 
   # Disable global userdir activation
   file {'/etc/apache2/mods-enabled/userdir.conf':
     ensure => absent,
-    notify => Exec['apache-graceful'],
+    notify => Exec['cegeka_apache-graceful'],
   }
 
 }
