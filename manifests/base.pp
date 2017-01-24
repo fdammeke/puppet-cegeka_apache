@@ -10,6 +10,7 @@ It shouldn't be necessary to directly include this class.
 class cegeka_apache::base {
 
   include cegeka_apache::params
+  include cegeka_apache::service
 
   $access_log = $cegeka_apache::params::access_log
   $error_log  = $cegeka_apache::params::error_log
@@ -63,13 +64,6 @@ class cegeka_apache::base {
     name   => $cegeka_apache::params::pkg,
   }
 
-  service { 'cegeka_apache':
-    ensure     => $cegeka_apache::params::service_status,
-    name       => $cegeka_apache::params::pkg,
-    enable     => true,
-    hasrestart => true,
-    require    => Package['cegeka_apache'],
-  }
   $logrotate_paths = "${cegeka_apache::params::root}/*/logs/*.log ${cegeka_apache::params::log}/*log"
   file {'logrotate configuration':
     ensure  => present,
