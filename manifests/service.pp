@@ -1,13 +1,9 @@
 /*
 
-== Class: cegeka_apache::base
-
-Common building blocks between cegeka_apache::debian and cegeka_apache::redhat.
-
-It shouldn't be necessary to directly include this class.
+== Class: cegeka_apache::service
 
 */
-class cegeka_apache::base {
+class cegeka_apache::service {
 
   include cegeka_apache::params
 
