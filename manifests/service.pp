@@ -5,13 +5,11 @@
 */
 class cegeka_apache::service {
 
-  include cegeka_apache::params
-
-  service { 'apache':
-    ensure     => $apache::params::service_status,
-    name       => $apache::params::pkg,
+  service { 'cegeka_apache':
+    ensure     => $cegeka_apache::params::service_status,
+    name       => $cegeka_apache::params::pkg,
     enable     => true,
     hasrestart => true,
-    require    => Package['apache'],
+    require    => Package[$cegeka_apache::params::pkg],
   }
 }
